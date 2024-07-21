@@ -65,3 +65,42 @@ docker exec -it target-etl python etl_script.py 01-01-2023
     select * from "data" d 
     where "timestamp" between '2023-01-01 00:00:00' and '2023-01-01 23:59:59'; 
     ```
+
+## Configuração do PgAdmin
+
+- Caso queira acessar o banco de dados pelo pgadmin, siga as instruções abaixo:
+
+    - Acesse a url [localhost](http://localhost:8081/)
+        
+        - Email: admin@admin.com
+        - Senha: admin
+
+        ![alt text](readme-images/image.png)
+    
+    - Na tela do pgadmin, clique em register e servers 
+    
+        ![alt text](readme-images/image-1.png)
+    
+    - Na configuração de conexão com o banco de dados sourcedb, siga as instruções abaixo:
+
+        - General/Name: source-database
+        - Connection/Host name: source-database
+        - Port: 5432
+        - Username: postgres
+        - Password: postgres
+
+        ![alt text](readme-images/image-2.png)
+        
+        ![alt text](readme-images/image-3.png)
+
+    - Em seguida clique em save. Caso a configuração funcione, será possível realizar as consultas normalmente
+
+        ![alt text](readme-images/image-4.png)
+
+    - Para a configuração do banco de dados targetdb (Repetir o mesmo processo acima):
+
+        - General/Name: target-database
+        - Connection/Host name: target-database
+        - Port: 5432
+        - Username: postgres
+        - Password: postgres
