@@ -1,0 +1,30 @@
+services:
+  source-api:
+    container_name: source-api
+    image: source-api
+    build: 
+      context: ./source-api
+    volumes:
+      - ./source-api/:/source-api/
+      - ./source-api/source-db-migration/versions:/source-api/source-db-migration/versions  
+    ports:
+      - "8000:8000"
+    networks:
+      - etl-network
+
+  target-etl:
+    container_name: target-etl
+    image: target-etl
+    build: 
+      context: ./target-etl
+    volumes:
+      - ./target-etl/:/target-etl/
+      - ./target-etl/target-db-migration/versions:/target-etl/target-db-migration/versions  
+    ports:
+      - "8001:8001"
+    networks:
+      - etl-network
+
+networks:
+  etl-network:
+    driver: bridge
